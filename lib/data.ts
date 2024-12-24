@@ -96,3 +96,5 @@ export const steps = [
   },
   { title: "Review", sub_title: "Confirm all information provided", component: PreviewStep },
 ];
+
+export const quote_items = [{ item: "Oxygen Concentrator", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 }];

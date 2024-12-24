@@ -1,17 +1,23 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import clsx from "clsx";
+import { Add, Calendar as CalendarIcon } from "iconsax-react";
+import { DatePicker } from "../ui/date";
+import { quote_items } from "@/lib/data";
+import AppTable from "../global/app-table";
+import { SelectField } from "../global/select-field";
+import { Button } from "../ui/button";
 
 export type QuoteProps = {
   "RQF No": string;
   title: string;
   department: string;
   quote_delivery_date: Date;
-  items: { item: string; variant: string; quantity: number; price: number; delivery_date: Date; amount: number }[];
+  items: { item: string; variant: string; quantity: number; price: number; delivery_date: string; amount: number }[];
 };
 
 const RequestQuoteForm = () => {
@@ -21,8 +27,28 @@ const RequestQuoteForm = () => {
       "RQF No": "RFQ-10234",
       title: "Request For Equipments",
       department: "Maternity",
+      items: quote_items,
     },
   });
+
+  // for creating and viewing an array of identical input fields
+  const { fields, append, remove } = useFieldArray({ control: form.control, name: "items" });
+
+  /* we use the fields array to know the amount of identical input fields we'll need to create...
+  then process that so we can pass to the table component*/
+  const processed_fields = fields.map(data => ({
+    items: <SelectField items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
+    variant: <SelectField items={[{ id: 1, name: "Blue" }]} select_by="name" />,
+    quantity: <Input />,
+    price: <Input />,
+    "Expected Delivery date": <DatePicker control={form.control} name="delivery_date" />,
+    amount: <span>$1200.00</span>,
+  }));
+
+  // function to delete identical input from the table
+  const handleDelete = (index: number) => {
+    remove(index);
+  };
 
   return (
     <Form {...form}>
@@ -63,6 +89,31 @@ const RequestQuoteForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="quote_delivery_date"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Expected Delivery Date</FormLabel>
+              <FormControl>
+                <DatePicker disabled className={clsx("btn-disabled")} control={form.control} {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <hr className="col-span-full" />
+        <div className="flex flex-col gap-8 col-span-full">
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between">
+              <span>Add Item</span>
+              <Button variant="outline" type="button" className="gap-1 items-center" onClick={() => append(quote_items)}>
+                <Add color="#667185" size={24} />
+                <span className="text-black">Add</span>
+              </Button>
+            </div>
+            <AppTable data={processed_fields} has_delete onDelete={handleDelete} />
+          </div>
+        </div>
       </form>
     </Form>
   );

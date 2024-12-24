@@ -12,6 +12,7 @@ const StepForm = () => {
   const { push } = useRouter();
   const { active, setActive, markAsCompleted, setCompleted } = useFormContext();
   const [open, setOpen] = useState(false);
+
   const CurrentStep = steps[active].component;
   const last_step = active + 1 == steps.length;
 
