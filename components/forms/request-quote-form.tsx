@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import clsx from "clsx";
 import { Add, Calendar as CalendarIcon } from "iconsax-react";
@@ -11,6 +11,7 @@ import { quote_items } from "@/lib/data";
 import AppTable from "../global/app-table";
 import { SelectField } from "../global/select-field";
 import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 
 export type QuoteProps = {
   "RQF No": string;
@@ -18,6 +19,7 @@ export type QuoteProps = {
   department: string;
   quote_delivery_date: Date;
   items: { item: string; variant: string; quantity: number; price: number; delivery_date: string; amount: number }[];
+  note: string;
 };
 
 const RequestQuoteForm = () => {
@@ -39,8 +41,8 @@ const RequestQuoteForm = () => {
   const processed_fields = fields.map(data => ({
     items: <SelectField items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
     variant: <SelectField items={[{ id: 1, name: "Blue" }]} select_by="name" />,
-    quantity: <Input />,
-    price: <Input />,
+    quantity: <Input className="shadow-none" />,
+    price: <Input className="shadow-none" />,
     "Expected Delivery date": <DatePicker control={form.control} name="delivery_date" />,
     amount: <span>$1200.00</span>,
   }));
@@ -112,6 +114,22 @@ const RequestQuoteForm = () => {
               </Button>
             </div>
             <AppTable data={processed_fields} has_delete onDelete={handleDelete} />
+          </div>
+          <hr className="col-span-full" />
+          <div className="sm:w-[472px]">
+            <FormField
+              control={form.control}
+              name="note"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Note</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Tell us a little bit about yourself" className="resize-none shadow-none sm:h-[155px]" {...field} />
+                  </FormControl>
+                  <FormDescription className="flex justify-end">0/200</FormDescription>
+                </FormItem>
+              )}
+            />
           </div>
         </div>
       </form>

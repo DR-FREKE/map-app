@@ -24,7 +24,7 @@ export function DatePicker({ control, name, className, disabled = false }: { con
               variant={"outline"}
               disabled={disabled}
               className={cn(
-                "flex w-full justify-start rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                "flex w-full justify-start shadow-none rounded-md border border-input bg-transparent px-3 py-1 text-base transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
                 className
               )}
             >

@@ -10,7 +10,7 @@ type SelectProps<T> = {
 export const SelectField = <T extends Record<string, any>>({ items, select_by }: SelectProps<T>) => {
   return (
     <Select>
-      <SelectTrigger className="w-[280px]">
+      <SelectTrigger className="w-[280px] shadow-none">
         <SelectValue placeholder="Select Item" />
       </SelectTrigger>
       <SelectContent>

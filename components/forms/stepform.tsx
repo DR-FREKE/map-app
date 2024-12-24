@@ -35,12 +35,14 @@ const StepForm = () => {
 
   return (
     <>
-      <div className={clsx("rounded-[10px] pt-8 pb-6 px-6", !last_step ? "border" : "")}>
+      <div className={clsx("rounded-[10px]", !last_step ? "border pt-8 pb-6 px-6" : "")}>
         <div className="flex gap-8 flex-col">
-          <div className="flex flex-col gap-2">
-            <span className="font-bold text-2xl leading-[28.8px]">{steps[active].head_title}</span>
-            <span className="text-[#98A2B3]">{steps[active].head_sub}</span>
-          </div>
+          {!last_step && (
+            <div className="flex flex-col gap-2">
+              <span className="font-bold text-2xl leading-[28.8px]">{steps[active].head_title}</span>
+              <span className="text-[#98A2B3]">{steps[active].head_sub}</span>
+            </div>
+          )}
           <CurrentStep />
           {!last_step && <hr className="" />}
           <div className="flex gap-6 justify-end">

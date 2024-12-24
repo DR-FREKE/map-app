@@ -18,7 +18,7 @@ const QuoteInformation = ({ name, right_prop, has_summary = true }: QuoteInfoPro
         <div>
           <span className="font-bold text-xl text-[#1D2739]">{name}</span>
         </div>
-        <span>{!right_prop && <DeliveryDateInfo />}</span>
+        <span>{right_prop ?? <DeliveryDateInfo />}</span>
       </div>
 
       {/** main content */}

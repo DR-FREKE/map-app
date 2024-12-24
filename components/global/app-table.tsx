@@ -16,7 +16,7 @@ type TableProps<T> = {
 const AppTable = <T extends Record<string, any>>({ data, has_checkbox, has_delete, onDelete }: TableProps<T>) => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]); // store indices of selected rows
 
-  const table_keys = Object.keys(data[0]); // use table keys as the table headers
+  const table_keys = Object.keys(data[0] ?? {}); // use table keys as the table headers
 
   const toggleAllRows = () => {
     if (selectedRows.length == data.length) {

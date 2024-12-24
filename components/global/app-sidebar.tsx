@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +19,7 @@ import { bottom_items, items } from "@/lib/data";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@radix-ui/react-collapsible";
 import { LogOut } from "lucide-react";
 import { ArrowDown2 } from "iconsax-react";
+import { cn } from "@/lib/utils";
 
 const MenuItem = (item: (typeof items)[number]) => {
   return (
@@ -33,22 +35,24 @@ const MenuItem = (item: (typeof items)[number]) => {
   );
 };
 
-const CollapsibleMenuItem = (item: (typeof items)[number]) => {
+const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items)[number]; is_active: boolean; onClick: (id: number) => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Collapsible defaultOpen className="group/collapsible">
-      <SidebarMenuItem className="rounded-sm py-2 px-4 gap-1 bg-purple-200">
-        <CollapsibleTrigger className="w-full hover:bg-transparent">
-          <SidebarMenuButton asChild className="w-full hover:bg-transparent focus:bg-transparent">
+    <Collapsible defaultOpen={true} className="group/collapsible" onOpenChange={open => setIsOpen(!open)}>
+      <SidebarMenuItem className={cn("gap-1")}>
+        <CollapsibleTrigger className={cn("w-full py-2 px-4 rounded-sm", is_active ? "bg-[#E3EAFB]" : "")} onClick={() => onClick(item.id)}>
+          <SidebarMenuButton asChild className="w-full hover:bg-transparent !bg-transparent">
             <div className="flex justify-between">
               <a href={item.url} className="flex gap-2">
                 <item.icon size={16} />
                 <span className="text-sm text-[#344054]">{item.title}</span>
               </a>
-              <ArrowDown2 color="#344054" />
+              <ArrowDown2 color="#344054" className={cn(isOpen ? "rotate-180" : "")} />
             </div>
           </SidebarMenuButton>
         </CollapsibleTrigger>
-        <CollapsibleContent>
+        <CollapsibleContent className="px-4">
           <SidebarMenuSub>
             {item.collapsible_item?.map(content => (
               <React.Fragment key={content.id}>
@@ -63,12 +67,16 @@ const CollapsibleMenuItem = (item: (typeof items)[number]) => {
 };
 
 function SidebarLinkGroup({ item_arr }: { item_arr: typeof items }) {
+  const [activeId, setActiveId] = useState<number | null>(null);
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="gap-3">
         <SidebarMenu className="gap-1">
           {item_arr.map(item => (
-            <React.Fragment key={item.id}>{"is_collapsible" in item && item.is_collapsible ? <CollapsibleMenuItem {...item} /> : <MenuItem {...item} />}</React.Fragment>
+            <React.Fragment key={item.id}>
+              {"is_collapsible" in item && item.is_collapsible ? <CollapsibleMenuItem item={item} is_active={item.id === Number(activeId)} onClick={id => setActiveId(id)} /> : <MenuItem {...item} />}
+            </React.Fragment>
           ))}
         </SidebarMenu>
       </SidebarGroupContent>

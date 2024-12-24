@@ -9,7 +9,7 @@ const Navbar = async () => {
     <header className="md:px-6 px-3 py-1.5 bg-white shadow-sm font-work-sans md:min-h-[64px] min-h-auto flex items-center">
       <nav className="flex justify-between flex-1 items-center py-3">
         <aside className="flex items-center gap-2">
-          <ArrowLeft2 size={20} color="red" />
+          <ArrowLeft2 size={20} color="#333333" />
           <span className="text-sm">Back</span>
         </aside>
         <aside className="flex items-center gap-10 text-black">
@@ -24,14 +24,6 @@ const Navbar = async () => {
                   <ArrowDown2 color="#667185" size={18} />
                 </div>
               </DropdownMenuTrigger>
-              {/* <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuContent> */}
             </DropdownMenu>
           </div>
         </aside>
