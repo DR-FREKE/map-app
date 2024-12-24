@@ -16,8 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-
 const satoshi = localFont({
   src: [
     {

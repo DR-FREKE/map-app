@@ -5,7 +5,6 @@ import { steps } from "@/lib/data";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import ConfirmModal from "../global/confirm-modal";
-import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 const StepForm = () => {

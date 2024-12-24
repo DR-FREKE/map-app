@@ -5,7 +5,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import clsx from "clsx";
-import { Add, Calendar as CalendarIcon } from "iconsax-react";
+import { Add } from "iconsax-react";
 import { DatePicker } from "../ui/date";
 import { quote_items } from "@/lib/data";
 import AppTable from "../global/app-table";
