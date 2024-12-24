@@ -1,7 +1,7 @@
 import PreviewStep from "@/components/forms/preview-form";
 import RequestQuoteForm from "@/components/forms/request-quote-form";
 import TermAttachmentForm from "@/components/forms/terms-attachment-form";
-import { Calendar, Home, Inbox, Search, Settings, MessageCircle, DockIcon } from "lucide-react";
+import { Grid7, Box1, ShoppingCart, Money3, Messages1, Calendar, DocumentText, MessageQuestion, Setting2 } from "iconsax-react";
 
 // Menu items.
 export const items = [
@@ -9,19 +9,19 @@ export const items = [
     id: 1,
     title: "Dashboard",
     url: "#",
-    icon: Home,
+    icon: Grid7,
   },
   {
     id: 2,
     title: "Inventory",
     url: "#",
-    icon: Inbox,
+    icon: Box1,
   },
   {
     id: 3,
     title: "Procurement",
     url: "#",
-    icon: Calendar,
+    icon: ShoppingCart,
     is_collapsible: true,
     collapsible_item: [
       { id: 1, title: "Quotes", url: "" },
@@ -32,14 +32,14 @@ export const items = [
     id: 4,
     title: "Finance",
     url: "#",
-    icon: Search,
+    icon: Money3,
     is_collapsible: true,
   },
   {
     id: 5,
     title: "Communication",
     url: "#",
-    icon: MessageCircle,
+    icon: Messages1,
     has_badge: true,
   },
   {
@@ -53,7 +53,7 @@ export const items = [
     id: 7,
     title: "Contracts",
     url: "#",
-    icon: DockIcon,
+    icon: DocumentText,
   },
 ];
 
@@ -64,13 +64,13 @@ export const bottom_items = [
     id: 1,
     title: "Support",
     url: "#",
-    icon: Home,
+    icon: MessageQuestion,
   },
   {
     id: 2,
     title: "Settings",
     url: "#",
-    icon: Inbox,
+    icon: Setting2,
   },
 ];
 

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 const StepForm = () => {
-  const { push } = useRouter();
+  // const { push } = useRouter();
   const { active, setActive, markAsCompleted, setCompleted } = useFormContext();
   const [open, setOpen] = useState(false);
 

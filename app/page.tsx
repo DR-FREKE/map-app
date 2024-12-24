@@ -2,7 +2,6 @@ import DashboardHeader from "@/components/dashboard.header";
 import QuoteAttachment from "@/components/quote.attachment";
 import QuoteInformation from "@/components/quote.info";
 import QuoteItems from "@/components/quote.item";
-import Image from "next/image";
 
 export default function Home() {
   return (

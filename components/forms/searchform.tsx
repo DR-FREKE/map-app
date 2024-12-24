@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "next/form";
-import SearchInput, { Input } from "../ui/input";
+import SearchInput from "../ui/input";
 
 const SearchForm = () => {
   return (

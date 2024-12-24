@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { ArrowLeft2, Notification, Messages1, ArrowDown2 } from "iconsax-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import SearchForm from "../forms/searchform";
 
 const Navbar = async () => {
