@@ -34,7 +34,7 @@ const StepForm = () => {
 
   return (
     <>
-      <div className={clsx("rounded-[10px]", !last_step ? "border pt-8 pb-6 px-6" : "")}>
+      <div className={clsx("rounded-[10px]", !last_step ? "border pt-8 pb-6 sm:px-6 px-4" : "")}>
         <div className="flex gap-8 flex-col">
           {!last_step && (
             <div className="flex flex-col gap-2">
@@ -44,7 +44,7 @@ const StepForm = () => {
           )}
           <CurrentStep />
           {!last_step && <hr className="" />}
-          <div className="flex gap-6 justify-end">
+          <div className="flex sm:gap-6 gap-2 justify-end">
             <Button className="max-w-[68px] bg-transparent border shadow-none text-gray-600 font-bold hover:bg-transparent" onClick={handleCancel}>
               Cancel
             </Button>

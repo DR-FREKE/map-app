@@ -12,9 +12,10 @@ import AppTable from "../global/app-table";
 import { SelectField } from "../global/select-field";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
+import { CustomInput } from "../global/custom-input";
 
 export type QuoteProps = {
-  "RQF No": string;
+  rqf_no: string;
   title: string;
   department: string;
   quote_delivery_date: Date;
@@ -26,7 +27,7 @@ const RequestQuoteForm = () => {
   const form = useForm<QuoteProps>({
     mode: "onChange",
     defaultValues: {
-      "RQF No": "RFQ-10234",
+      rqf_no: "RFQ-10234",
       title: "Request For Equipments",
       department: "Maternity",
       items: quote_items,
@@ -39,8 +40,8 @@ const RequestQuoteForm = () => {
   /* we use the fields array to know the amount of identical input fields we'll need to create...
   then process that so we can pass to the table component*/
   const processed_fields = fields.map(data => ({
-    items: <SelectField items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
-    variant: <SelectField items={[{ id: 1, name: "Blue" }]} select_by="name" />,
+    items: <SelectField name="item" control={form.control} items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
+    variant: <SelectField name="variant" control={form.control} items={[{ id: 1, name: "Blue" }]} select_by="name" />,
     quantity: <Input className="shadow-none" />,
     price: <Input className="shadow-none" />,
     "Expected Delivery date": <DatePicker control={form.control} name="delivery_date" />,
@@ -54,19 +55,8 @@ const RequestQuoteForm = () => {
 
   return (
     <Form {...form}>
-      <form className="grid grid-cols-2 gap-x-[18px] gap-y-6">
-        <FormField
-          control={form.control}
-          name="RQF No"
-          render={({ field }) => (
-            <FormItem className="w-full">
-              <FormLabel>RFQ No</FormLabel>
-              <FormControl>
-                <Input placeholder="" className={clsx("btn-disabled")} disabled {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+      <form className="grid sm:grid-cols-2 grid-cols-1 gap-x-[18px] gap-y-6">
+        <CustomInput name="rqf_no" control={form.control} label="RQF No" disabled />
         <FormField
           control={form.control}
           name="title"

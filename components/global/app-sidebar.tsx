@@ -22,11 +22,12 @@ import { ArrowDown2 } from "iconsax-react";
 import { cn } from "@/lib/utils";
 
 const MenuItem = (item: (typeof items)[number]) => {
+  const Icon = item.icon;
   return (
     <SidebarMenuItem key={item.title} className="rounded-sm py-2.5 px-4 pr-0 gap-1">
       <SidebarMenuButton asChild className="hover:bg-transparent group">
         <a href={item.url}>
-          <item.icon size={20} color="#667185" variant="Bold" />
+          <Icon size={20} color="#667185" variant="Bold" />
           <span className="text-sm text-[#344054]">{item.title}</span>
         </a>
       </SidebarMenuButton>
@@ -39,7 +40,7 @@ const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Collapsible defaultOpen={false} className="group/collapsible" onOpenChange={open => setIsOpen(!open)}>
+    <Collapsible defaultOpen={isOpen} className="group/collapsible" onOpenChange={open => setIsOpen(open)}>
       <SidebarMenuItem className={cn("gap-1")}>
         <CollapsibleTrigger className={cn("w-full py-2 px-4 rounded-sm", is_active ? "bg-[#E3EAFB]" : "")} onClick={() => onClick(item.id)}>
           <SidebarMenuButton asChild className="w-full hover:bg-transparent !bg-transparent">

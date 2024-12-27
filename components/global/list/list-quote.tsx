@@ -13,7 +13,7 @@ const Requestor = () => (
 );
 
 const quote_details = {
-  title: <span className="font-medium text-[#344054]">Request for Equipments</span>,
+  Title: <span className="font-medium text-[#344054]">Request for Equipments</span>,
   "RFQ No": <span className="font-medium text-[#344054]">RQ #01234</span>,
   Requestor: <Requestor />,
   Status: <Badge className="rounded-[50px] bg-[#FFECE5] text-[#F56630] shadow-none">Awaiting</Badge>,
