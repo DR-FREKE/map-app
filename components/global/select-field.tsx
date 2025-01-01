@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FormField, FormItem, FormLabel } from "../ui/form";
+import { FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { cn } from "@/lib/utils";
 
 type SelectProps<T> = {
@@ -11,9 +11,10 @@ type SelectProps<T> = {
   name: string;
   label?: string;
   className?: string;
+  disabled?: boolean;
 };
 
-export const SelectField = <T extends Record<string, any>>({ items, select_by, control, name, label, className }: SelectProps<T>) => {
+export const SelectField = <T extends Record<string, any>>({ items, select_by, control, name, label, className, disabled }: SelectProps<T>) => {
   return (
     <FormField
       name={name}
@@ -21,10 +22,13 @@ export const SelectField = <T extends Record<string, any>>({ items, select_by, c
       render={({ field }) => (
         <FormItem>
           {label && <FormLabel>{label}</FormLabel>}
-          <Select>
-            <SelectTrigger className={cn("shadow-none", className)}>
-              <SelectValue placeholder="Select Item" />
-            </SelectTrigger>
+          <Select disabled={disabled} defaultValue={field.value} {...field}>
+            <FormControl>
+              <SelectTrigger className={cn("shadow-none btn-disabled", className)}>
+                <SelectValue placeholder="Select Item" />
+              </SelectTrigger>
+            </FormControl>
+
             <SelectContent>
               <SelectGroup>
                 {items.map((content, index) => (

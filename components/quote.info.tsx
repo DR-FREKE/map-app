@@ -6,11 +6,12 @@ type QuoteInfoProps = {
   name: string;
   right_prop?: React.ReactNode;
   has_summary?: boolean;
+  details?: any;
 };
 
 const DeliveryDateInfo = () => <span className="text-sm text-gray-primary-gray">Expected delivery date : 2024-12-02</span>;
 
-const QuoteInformation = ({ name, right_prop, has_summary = true }: QuoteInfoProps) => {
+const QuoteInformation = ({ name, right_prop, has_summary = true, details }: QuoteInfoProps) => {
   return (
     <div className="rounded-lg border md:py-6 py-4 md:px-8 px-5 flex flex-col gap-8 border-[#E4E7EC]">
       {/** header */}
@@ -23,7 +24,7 @@ const QuoteInformation = ({ name, right_prop, has_summary = true }: QuoteInfoPro
 
       {/** main content */}
       <div className="flex md:flex-row flex-col-reverse justify-between items-start md:gap-0 gap-4">
-        <QuoteInfo />
+        <QuoteInfo details={details} />
         {has_summary && <SummaryCard />}
       </div>
     </div>

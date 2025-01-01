@@ -22,22 +22,21 @@ import { ArrowDown2 } from "iconsax-react";
 import { cn } from "@/lib/utils";
 
 const MenuItem = (item: (typeof items)[number]) => {
-  const Icon = item.icon;
   return (
     <SidebarMenuItem key={item.title} className="rounded-sm py-2.5 px-4 pr-0 gap-1">
       <SidebarMenuButton asChild className="hover:bg-transparent group">
-        <a href={item.url}>
-          <Icon size={20} color="#667185" variant="Bold" />
+        <a href={item.url} className="flex items-center gap-3">
+          <Image src={item.icon} alt="" width={20} height={20} priority />
           <span className="text-sm text-[#344054]">{item.title}</span>
         </a>
       </SidebarMenuButton>
-      {item.has_badge && <SidebarMenuBadge className="my-[11px] sm:w-[30px] !text-white pointer-events-none font-medium sm:h-[17px] rounded-[10px] bg-[#175CFF]">10</SidebarMenuBadge>}
+      {item.has_badge && <SidebarMenuBadge className="my-[11px] sm:w-[30px] !text-white font-inter pointer-events-none font-medium sm:h-[17px] rounded-[10px] bg-[#175CFF]">10</SidebarMenuBadge>}
     </SidebarMenuItem>
   );
 };
 
 const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items)[number]; is_active: boolean; onClick: (id: number) => void }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Collapsible defaultOpen={isOpen} className="group/collapsible" onOpenChange={open => setIsOpen(open)}>
@@ -45,9 +44,10 @@ const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items
         <CollapsibleTrigger className={cn("w-full py-2 px-4 rounded-sm", is_active ? "bg-[#E3EAFB]" : "")} onClick={() => onClick(item.id)}>
           <SidebarMenuButton asChild className="w-full hover:bg-transparent !bg-transparent">
             <div className="flex justify-between">
-              <a href={item.url} className="flex gap-2 items-center">
-                <item.icon size={16} color="#667185" variant="Bold" />
-                <span className="text-sm text-[#344054]">{item.title}</span>
+              <a href={item.url} className="flex gap-3 items-center">
+                <Image src={item.icon} alt="" width={20} height={20} priority />
+                {/* <item.icon size={16} color="#667185" variant="Bold" /> */}
+                <span className={cn("text-sm text-[#344054]", is_active ? "font-bold" : "")}>{item.title}</span>
               </a>
               <ArrowDown2 color="#344054" className={cn(isOpen ? "rotate-180" : "")} />
             </div>
@@ -57,7 +57,7 @@ const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items
           <SidebarMenuSub>
             {item.collapsible_item?.map(content => (
               <React.Fragment key={content.id}>
-                <SidebarMenuSubItem className="py-2.5 px-1 text-[#344054]">{content.title}</SidebarMenuSubItem>
+                <SidebarMenuSubItem className="py-2.5 px-3 text-[#344054]">{content.title}</SidebarMenuSubItem>
               </React.Fragment>
             ))}
           </SidebarMenuSub>
@@ -68,7 +68,7 @@ const CollapsibleMenuItem = ({ item, is_active, onClick }: { item: (typeof items
 };
 
 function SidebarLinkGroup({ item_arr }: { item_arr: typeof items }) {
-  const [activeId, setActiveId] = useState<number | null>(null);
+  const [activeId, setActiveId] = useState<number | null>(3);
 
   return (
     <SidebarGroup>
@@ -87,9 +87,9 @@ function SidebarLinkGroup({ item_arr }: { item_arr: typeof items }) {
 
 export function AppSidebar() {
   return (
-    <Sidebar side="left" collapsible="icon" className="bg-[#F7F9FC] py-4 gap-3">
+    <Sidebar collapsible="icon" className="bg-[#F7F9FC] py-4 gap-3">
       <SidebarHeader className="p-[8px_24px] gap-1 rounded-sm">
-        <Image src={"/logo.svg"} alt="logo" width={224} height={40} />
+        <Image src={"/logo.svg"} alt="logo" width={224} height={40} priority />
       </SidebarHeader>
       <SidebarContent className="pr-3 justify-between">
         <SidebarLinkGroup item_arr={items} />

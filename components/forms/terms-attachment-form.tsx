@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
 import { SelectField } from "../global/select-field";
+import { AppFileUpload } from "../global/app-file-upload";
 
 export type AttachmentProps = {
   payment_terms: string;
@@ -21,7 +22,10 @@ const TermAttachmentForm = () => {
         <SelectField name="delivery_schedule" control={form.control} label="Delivery Schedule" items={[]} />
         <SelectField name="shipping_method" control={form.control} label="Shipping Method" items={[]} />
         <SelectField name="lead_time" control={form.control} label="Lead Time" items={[]} />
-        <hr className="col-span-full" />
+        <hr className="" />
+        <div className="col-span-full">
+          <AppFileUpload />
+        </div>
       </form>
     </Form>
   );

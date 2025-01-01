@@ -1,7 +1,16 @@
 import PreviewStep from "@/components/forms/preview-form";
 import RequestQuoteForm from "@/components/forms/request-quote-form";
 import TermAttachmentForm from "@/components/forms/terms-attachment-form";
-import { Grid7, Box1, ShoppingCart, Money3, Messages1, Calendar, DocumentText, MessageQuestion, Setting2 } from "iconsax-react";
+import GridIcon from "@/public/grid-2.svg";
+import Box from "@/public/box.svg";
+import ShoppingCart from "@/public/cart.svg";
+import MoneyIcon from "@/public/money.svg";
+import QuestionIcon from "@/public/question-circle.svg";
+import SettingIcon from "@/public/settings.svg";
+import Calendar from "@/public/calendar-alt.svg";
+import DocumentText from "@/public/sign-doc-2.svg";
+import Message from "@/public/chats.svg";
+import { CSSProperties } from "react";
 
 // Menu items.
 export const items = [
@@ -9,13 +18,13 @@ export const items = [
     id: 1,
     title: "Dashboard",
     url: "#",
-    icon: Grid7,
+    icon: GridIcon,
   },
   {
     id: 2,
     title: "Inventory",
     url: "#",
-    icon: Box1,
+    icon: Box,
   },
   {
     id: 3,
@@ -32,14 +41,14 @@ export const items = [
     id: 4,
     title: "Finance",
     url: "#",
-    icon: Money3,
+    icon: MoneyIcon,
     is_collapsible: true,
   },
   {
     id: 5,
     title: "Communication",
     url: "#",
-    icon: Messages1,
+    icon: Message,
     has_badge: true,
   },
   {
@@ -64,13 +73,13 @@ export const bottom_items = [
     id: 1,
     title: "Support",
     url: "#",
-    icon: MessageQuestion,
+    icon: QuestionIcon,
   },
   {
     id: 2,
     title: "Settings",
     url: "#",
-    icon: Setting2,
+    icon: SettingIcon,
   },
 ];
 
@@ -97,4 +106,13 @@ export const steps = [
   { title: "Review", sub_title: "Confirm all information provided", component: PreviewStep },
 ];
 
-export const quote_items = [{ item: "Oxygen Concentrator", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 }];
+export const quote_items = [
+  { item: "Oxygen Concentrator", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 },
+  { item: "Mechanical Ventilator", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 },
+  { item: "Patient Monitor", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 },
+  { item: "Mechanical Ventilator", variant: "Blue", quantity: 100, price: 12, delivery_date: "2023-12-01", amount: 1200 },
+];
+
+export const additionalHeaderStyle: CSSProperties[] = [{ width: "310px" }, { width: "210px" }, { width: "210px" }, { width: "230px" }, { width: "130px" }, { width: "280px", paddingRight: "24px" }];
+
+export const reqInfoHeaderStyle: CSSProperties[] = [{ width: "310px" }, { width: "210px" }, { width: "180px" }, { width: "180px" }, { width: "250px" }];

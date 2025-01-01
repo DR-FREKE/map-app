@@ -7,12 +7,13 @@ import { Input } from "../ui/input";
 import clsx from "clsx";
 import { Add } from "iconsax-react";
 import { DatePicker } from "../ui/date";
-import { quote_items } from "@/lib/data";
+import { quote_items, reqInfoHeaderStyle } from "@/lib/data";
 import AppTable from "../global/app-table";
 import { SelectField } from "../global/select-field";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { CustomInput } from "../global/custom-input";
+import AmountSummary from "../global/amount-summary";
 
 export type QuoteProps = {
   rqf_no: string;
@@ -40,12 +41,12 @@ const RequestQuoteForm = () => {
   /* we use the fields array to know the amount of identical input fields we'll need to create...
   then process that so we can pass to the table component*/
   const processed_fields = fields.map(data => ({
-    items: <SelectField name="item" control={form.control} items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
+    items: <SelectField disabled name="item" control={form.control} items={[{ id: 1, name: "Oxygen Concentration" }]} select_by="name" />,
     variant: <SelectField name="variant" control={form.control} items={[{ id: 1, name: "Blue" }]} select_by="name" />,
-    quantity: <Input className="shadow-none" />,
-    price: <Input className="shadow-none" />,
-    "Expected Delivery date": <DatePicker control={form.control} name="delivery_date" />,
-    amount: <span>$1200.00</span>,
+    quantity: <CustomInput name="quantity" control={form.control} />,
+    price: <CustomInput name="price" control={form.control} />,
+    "Expected Delivery date": <DatePicker control={form.control} name="delivery_date" className="btn-disabled" />,
+    amount: <span className="font-bold text-[#344054]">$1200.00</span>,
   }));
 
   // function to delete identical input from the table
@@ -88,7 +89,7 @@ const RequestQuoteForm = () => {
             <FormItem>
               <FormLabel>Expected Delivery Date</FormLabel>
               <FormControl>
-                <DatePicker disabled className={clsx("btn-disabled")} control={form.control} {...field} />
+                <DatePicker disabled caption className={clsx("btn-disabled")} control={form.control} {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -97,15 +98,16 @@ const RequestQuoteForm = () => {
         <div className="flex flex-col gap-8 col-span-full">
           <div className="flex flex-col gap-4">
             <div className="flex justify-between">
-              <span>Add Item</span>
+              <span className="font-bold text-[#1D2739]">Add Item</span>
               <Button variant="outline" type="button" className="gap-1 items-center" onClick={() => append(quote_items)}>
                 <Add color="#667185" size={24} />
                 <span className="text-black">Add</span>
               </Button>
             </div>
-            <AppTable data={processed_fields} has_delete onDelete={handleDelete} />
+            <AppTable data={processed_fields} has_delete onDelete={handleDelete} additionalHeaderStyle={reqInfoHeaderStyle} variant="outline" />
+            <hr />
+            <AmountSummary no_total className="sm:min-h-0" />
           </div>
-          <hr className="col-span-full" />
           <div className="sm:w-[472px]">
             <FormField
               control={form.control}

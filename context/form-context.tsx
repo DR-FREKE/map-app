@@ -8,6 +8,7 @@ type FormContextType = {
   completed: number[];
   markAsCompleted: (step: number) => void;
   setCompleted: Dispatch<SetStateAction<number[]>>;
+  reset: () => void;
 };
 
 interface FormContextProviderProps {
@@ -31,7 +32,12 @@ const FormContextProvider = ({ children }: FormContextProviderProps) => {
     setCompleted(prev => (prev.includes(step) ? prev : [...prev, step]));
   };
 
-  return <FormContext.Provider value={{ active, setActive, completed, markAsCompleted, setCompleted }}>{children}</FormContext.Provider>;
+  const reset = () => {
+    setCompleted([]);
+    setActive(0);
+  };
+
+  return <FormContext.Provider value={{ active, setActive, completed, markAsCompleted, setCompleted, reset }}>{children}</FormContext.Provider>;
 };
 
 export default FormContextProvider;

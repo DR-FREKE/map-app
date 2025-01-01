@@ -88,5 +88,5 @@ body {
 }
 
 .btn-disabled {
-  @apply disabled:bg-[#F0F2F5] border border-[#D0D5DD] shadow-none py-2;
+  @apply disabled:bg-[#F0F2F5] border disabled:border disabled:border-[#D0D5DD] border-[#D0D5DD] shadow-none py-2;
 }

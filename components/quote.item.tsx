@@ -1,7 +1,8 @@
 import React from "react";
 import AppTable from "./global/app-table";
-import { QuoteItem } from "@/lib/data";
+import { additionalHeaderStyle, QuoteItem } from "@/lib/data";
 import ItemRow from "./global/item-row";
+import AmountSummary from "./global/amount-summary";
 
 // this data should mostly come from api and can be transpiled or processed to get desired result
 const quote_items = [
@@ -24,11 +25,12 @@ const QuoteItems = () => {
   const quote_data = quote_items.map(processData);
   return (
     <div className="rounded-[10px] border border-[#E4E7EC] shadow-sm pb-6 flex flex-col gap-4">
-      <div className="py-4 px-6 border-b">
+      <div className="py-4 px-6">
         <span className="font-bold text-xl leading-6">Item(s)</span>
       </div>
       <div className="px-4 flex flex-col gap-6">
-        <AppTable data={quote_data} has_checkbox />
+        <AppTable data={quote_data} has_checkbox additionalHeaderStyle={additionalHeaderStyle} />
+        <AmountSummary />
       </div>
     </div>
   );

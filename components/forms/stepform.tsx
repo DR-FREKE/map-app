@@ -2,18 +2,29 @@
 
 import { useFormContext } from "@/context/form-context";
 import { steps } from "@/lib/data";
-import React, { useState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import ConfirmModal from "../global/confirm-modal";
 import clsx from "clsx";
+import { createQuote } from "@/actions/test";
+import { LoadingDialog } from "../global/loading-modal";
+import { useToast } from "@/hooks/use-toast";
 
 const StepForm = () => {
   // const { push } = useRouter();
-  const { active, setActive, markAsCompleted, setCompleted } = useFormContext();
+  const { active, markAsCompleted, setActive, reset } = useFormContext();
   const [open, setOpen] = useState(false);
+  const [state, formAction, pending] = useActionState(createQuote, null);
+  const { toast } = useToast();
 
   const CurrentStep = steps[active].component;
   const last_step = active + 1 == steps.length;
+
+  useEffect(() => {
+    if (state?.success) {
+      toast({ description: "RFQ ID sent successfully!" });
+    }
+  }, [state]);
 
   const handleNextStep = () => {
     if (active + 1 !== steps.length) {
@@ -26,10 +37,7 @@ const StepForm = () => {
   };
 
   const handleCancel = () => {
-    // push("/");
-
-    setCompleted([]);
-    setActive(0);
+    reset();
   };
 
   return (
@@ -55,7 +63,8 @@ const StepForm = () => {
           </div>
         </div>
       </div>
-      <ConfirmModal open={open} setOpen={setOpen} />
+      <ConfirmModal open={open && !pending} setOpen={setOpen} action={formAction} />
+      <LoadingDialog open={pending} />
     </>
   );
 };
