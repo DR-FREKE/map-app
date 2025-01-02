@@ -3,7 +3,6 @@
 import React, { CSSProperties, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Checkbox } from "../ui/checkbox";
-import { Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";

@@ -99,7 +99,7 @@ const RequestQuoteForm = () => {
           <div className="flex flex-col gap-4">
             <div className="flex justify-between">
               <span className="font-bold text-[#1D2739]">Add Item</span>
-              <Button variant="outline" type="button" className="gap-1 items-center" onClick={() => append(quote_items)}>
+              <Button variant="outline" type="button" className="gap-1 items-center" onClick={() => append(quote_items[0])}>
                 <Add color="#667185" size={24} />
                 <span className="text-black">Add</span>
               </Button>

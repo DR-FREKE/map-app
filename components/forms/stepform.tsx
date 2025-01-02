@@ -28,6 +28,7 @@ const StepForm = () => {
 
   const handleNextStep = () => {
     if (active + 1 !== steps.length) {
+      // should just use !last_step
       markAsCompleted(active);
       setActive(prev => (prev < steps.length - 1 ? prev + 1 : prev));
       return;

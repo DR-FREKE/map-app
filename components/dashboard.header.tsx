@@ -7,7 +7,7 @@ const DashboardHeader = () => {
   return (
     <div className="flex md:flex-row flex-col justify-between md:items-center items-start md:gap-0 gap-4">
       <div className="flex flex-col gap-[2px]">
-        <span className="font-bold text-2xl">Quote details</span>
+        <span className="font-bold sm:text-2xl text-xl">Quote details</span>
         <small className="text-[#667185] text-sm leading-[20.3px]">Created on Wed, 12th June 2022, 08:00am</small>
       </div>
       <div className="flex gap-3 items-center text-white">
