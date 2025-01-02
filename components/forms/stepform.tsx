@@ -24,7 +24,7 @@ const StepForm = () => {
     if (state?.success) {
       toast({ description: "RFQ ID sent successfully!" });
     }
-  }, [state]);
+  }, [state, toast]);
 
   const handleNextStep = () => {
     if (active + 1 !== steps.length) {

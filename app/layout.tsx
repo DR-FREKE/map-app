@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AppSidebarProvider } from "@/providers/sidebar-provider";
 import Navbar from "@/components/global/navbar";
-import FormContextProvider from "@/context/form-context";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import AppProvider from "@/providers/app-provider";
