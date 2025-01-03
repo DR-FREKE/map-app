@@ -6,6 +6,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type TableProps<T> = {
   data: T[];
@@ -18,6 +19,7 @@ type TableProps<T> = {
 
 const AppTable = <T extends Record<string, any>>({ data, has_checkbox, has_delete, onDelete, variant, additionalHeaderStyle = [] }: TableProps<T>) => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]); // store indices of selected rows
+  const isMobile = useIsMobile();
 
   const table_keys = Object.keys(data[0] ?? {}); // use table keys as the table headers
 
@@ -43,13 +45,13 @@ const AppTable = <T extends Record<string, any>>({ data, has_checkbox, has_delet
       <TableHeader className={cn("bg-[#F9FAFB]", variant == "outline" && "[&_tr]:border-b-0")}>
         <TableRow className="">
           {has_checkbox && (
-            <TableHead className="pl-6 flex items-center self-start">
-              <Checkbox className="shadow-none border-[#D0D5DD] w-5 h-5" checked={selectedRows.length === data.length} onCheckedChange={toggleAllRows} />
+            <TableHead className="sm:pl-6 flex items-center self-start">
+              <Checkbox className="shadow-none border-[#D0D5DD] sm:w-5 sm:h-5" checked={selectedRows.length === data.length} onCheckedChange={toggleAllRows} />
             </TableHead>
           )}
           {table_keys.map((content, index) => (
             <React.Fragment key={index}>
-              <TableHead className={cn("capitalize")} style={additionalHeaderStyle[index] || {}}>
+              <TableHead className={cn("capitalize")} style={(!isMobile && additionalHeaderStyle[index]) || {}}>
                 {content}
               </TableHead>
             </React.Fragment>
@@ -61,8 +63,8 @@ const AppTable = <T extends Record<string, any>>({ data, has_checkbox, has_delet
         {data.map((content, index) => (
           <TableRow key={index} className={cn("cursor-pointer", variant == "outline" && "border-b-0")}>
             {has_checkbox && (
-              <TableCell className="pl-6">
-                <Checkbox className="shadow-none border-[#D0D5DD] w-5 h-5" checked={selectedRows.includes(index)} onCheckedChange={toggleIndividualRow(index)} />
+              <TableCell className="sm:pl-6">
+                <Checkbox className="shadow-none border-[#D0D5DD] sm:w-5 sm:h-5" checked={selectedRows.includes(index)} onCheckedChange={toggleIndividualRow(index)} />
               </TableCell>
             )}
             {table_keys.map((key, index) => (
